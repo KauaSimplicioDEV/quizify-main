@@ -9,8 +9,8 @@
 | Nome | GitHub |
 |---|---|
 | Murilo Barbosa Novaes | [@MuriloNovaes](https://github.com/MuriloNovaes) |
-| Kauã Santos Simplicio | — |
-| Rodrigo Illydio | — |
+| Kauã Santos Simplicio | [@KauaSimplicioDEV](https://github.com/KauaSimplicioDEV) |
+| Rodrigo Illydio | [@digoexec](https://github.com/digoexec) | 
 
 ---
 
@@ -86,11 +86,15 @@ echo OPENAI_API_KEY=sk-proj-... > .env
 # 3. Subir a API
 uvicorn app.main:app --reload
 
-# 4. Expor com ngrok (para o frontend acessar)
+# 4. (Dev) Expor com ngrok OU (Produção) deploy no Render — ver DEPLOY.md
 ngrok http 8000
 ```
 
 Documentação interativa: `http://localhost:8000/docs`
+
+### Deploy em produção
+
+Passo a passo completo (Render + `EXPO_PUBLIC_API_URL` + EAS): **[DEPLOY.md](./DEPLOY.md)**
 
 ### Estrutura
 
@@ -104,7 +108,7 @@ backend/
 │       ├── openai_service.py    ← integração OpenAI
 │       └── quiz_service.py      ← lógica de negócio
 ├── testes/
-├── .env                         ← 🔒 não sobe pro git
+├── .env                       
 ├── requirements.txt
 ├── README.md                    ← documentação da API
 └── ARCHITECTURE.md              ← arquitetura detalhada
@@ -114,7 +118,16 @@ backend/
 
 ## 📱 Frontend
 
-> Em desenvolvimento — React Native.
+App **Expo / React Native** em `frontend/`.
+
+```bash
+cd frontend
+cp .env.example .env   # preencha EXPO_PUBLIC_API_URL após o deploy da API
+npm install
+npx expo start
+```
+
+Deploy do app (EAS): ver **[DEPLOY.md](./DEPLOY.md)**.
 
 ---
 
